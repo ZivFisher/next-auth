@@ -2,7 +2,7 @@
 
 import { getUserByEmail } from "@/dbQueries/user";
 import { ResetPasswordSchema } from "@/schemas";
-import { sendPasswordResetEmail } from "@/lib/utils/functions/sendPasswordResetEmail";
+import { sendPasswordResetEmail } from "@/lib/utils/functions/sendEmail";
 import { generatePasswordResetToken } from "@/lib/utils/functions/token";
 import { AppResponse } from "@/lib/utils/consts/serverResponses";
 import { z } from "zod";

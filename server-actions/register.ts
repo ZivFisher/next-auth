@@ -7,7 +7,7 @@ import { RegisterSchema } from "@/schemas";
 import { db } from "@/lib/utils/consts/db";
 import { getUserByEmail } from "@/dbQueries/user";
 import { generateVerificationToken } from "@/lib/utils/functions/token";
-import { sendVerificationEmail } from "@/lib/utils/functions/sendVerificationEmail";
+import { sendVerificationEmail } from "@/lib/utils/functions/sendEmail";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values);

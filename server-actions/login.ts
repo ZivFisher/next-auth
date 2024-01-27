@@ -11,11 +11,10 @@ import {
   generateTwoFactorToken,
   generateVerificationToken,
 } from "@/lib/utils/functions/token";
-import { sendVerificationEmail } from "@/lib/utils/functions/sendVerificationEmail";
-import { sendTwoFactorEmail } from "@/lib/utils/functions/sendTwoFactorEmail";
 import { getTwoFactorTokenByEmail } from "@/dbQueries/two-factor-token";
 import { db } from "@/lib/utils/consts/db";
 import { getTwoFactorConfirmationByUserId } from "@/dbQueries/two-factor-confirmation";
+import { sendTwoFactorEmail, sendVerificationEmail } from "@/lib/utils/functions/sendEmail";
 
 export const login = async (
   values: z.infer<typeof LoginSchema>,
