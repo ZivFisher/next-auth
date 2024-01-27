@@ -25,6 +25,7 @@ import { appRoutes } from "@/lib/utils/enums";
 
 export const LoginForm = () => {
   const searchedParams = useSearchParams();
+  const callbackUrl = searchedParams.get("callbackUrl");
   const isUrlError = searchedParams.get("error") === "OAuthAccountNotLinked";
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>("");
@@ -46,7 +47,7 @@ export const LoginForm = () => {
 
     try {
       startTransition(async () => {
-        const res = await login(values);
+        const res = await login(values, callbackUrl);
 
         if (res?.error) {
           form.reset();

@@ -16,9 +16,11 @@ import { sendTwoFactorEmail } from "@/lib/utils/functions/sendTwoFactorEmail";
 import { getTwoFactorTokenByEmail } from "@/dbQueries/two-factor-token";
 import { db } from "@/lib/utils/consts/db";
 import { getTwoFactorConfirmationByUserId } from "@/dbQueries/two-factor-confirmation";
-import { AppResponse } from "@/lib/utils/consts/serverResponses";
 
-export const login = async (values: z.infer<typeof LoginSchema>) => {
+export const login = async (
+  values: z.infer<typeof LoginSchema>,
+  callbackUrl?: string | null
+) => {
   const validatedFields = LoginSchema.safeParse(values);
 
   if (!validatedFields.success) return { error: "Invalid fields!" };
@@ -94,7 +96,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     await signIn("credentials", {
       email,
       password,
-      redirectTo: DEFAULT_LOGIN_REDIRECT,
+      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
     });
   } catch (error) {
     if (error instanceof AuthError) {
