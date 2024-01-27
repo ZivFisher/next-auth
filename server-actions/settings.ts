@@ -3,7 +3,7 @@
 import { getUserByEmail, getUserById } from "@/dbQueries/user";
 import { currentUser } from "@/lib/utils/consts/auth";
 import { db } from "@/lib/utils/consts/db";
-import { sendVerificationEmail } from "@/lib/utils/functions/sendVerificationEmail";
+import { sendVerificationEmail } from "@/lib/utils/functions/sendEmail";
 import { generateVerificationToken } from "@/lib/utils/functions/token";
 import { SettingsSchema } from "@/schemas";
 import bcrypt from "bcryptjs";
