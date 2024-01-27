@@ -1,4 +1,4 @@
-("use server");
+"use server";
 
 import { getPasswordResetTokenByToken } from "@/dbQueries/password-reset-token";
 import { AppResponse } from "../lib/utils/consts/serverResponses";
