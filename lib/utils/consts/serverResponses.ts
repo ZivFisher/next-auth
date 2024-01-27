@@ -1,0 +1,26 @@
+/* errors */
+export const AppResponse = {
+  UNAUTHORIZED: { error: "Unauthorized" },
+  INVALID_FIELDS: { error: "Invalid fields!" },
+  INVALID_CREDENTIALS: { error: "Invalid credentials" },
+  EMAIL_NOT_EXIST: { error: "Email does not exist!" },
+  MISSING_TOKEN: { error: "Missing token!" },
+  INVALID_CODE: { error: "Invalid code!" },
+  CODE_EXPIRED: { error: "Code expired!" },
+  SOMETHING_WENT_WRONG: { error: "Something went wrong" },
+  INVALID_TOKEN: { error: "Invalid token!" },
+  TOKEN_NOT_EXIST: { error: "Token does not exist!" },
+  EXPIRED_TOKEN: { error: "Token has expired!" },
+  INVALID_EMAIL: { error: "Invalid email" },
+  EMAIL_NOT_FOUND: { error: "Email not found" },
+  EMAIL_IN_USE: { error: "Email already in use!" },
+  CONFIRM_EMAIL: {
+    success: "Please confirm your email address before logging in.",
+  },
+  PASSWORD_UPDATED: { success: "Password updated!" },
+  EMAIL_VERIFIED: { success: "Email verified!" },
+  RESET_EMAIL_SENT: { success: "Reset email sent!" },
+  CONFIRM_EMAIL_SENT: { success: "Confirmation email sent!" },
+  SETTING_UPDATED: { success: "Settings Updated!" },
+  TWO_FACTOR: { twoFactor: true },
+};
