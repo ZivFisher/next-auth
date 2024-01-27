@@ -14,13 +14,13 @@ export default function Home() {
       <div className="space-y-6 text-center">
         <h1
           className={cn(
-            "text-6xl font-semibold text-white drop-shadow-md",
+            "text-6xl font-semibold drop-shadow-xl",
             font.className
           )}
         >
           {process.env.APPLICATION_NAME}
         </h1>
-        <p className="text-white text-lg">A simple authentication service</p>
+        <p className="text-lg">A simple authentication service</p>
         <div>
           <LoginButton asChild>
             <Button variant="secondary" size="lg">
