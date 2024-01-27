@@ -3,20 +3,19 @@
 import { getVerificationTokenByToken } from "@/dbQueries/verification-token";
 import { getUserByEmail } from "@/dbQueries/user";
 import { db } from "@/lib/utils/consts/db";
-import { AppResponse } from "@/lib/utils/consts/serverResponses";
 
 export const newVerification = async (token: string) => {
   const existingToken = await getVerificationTokenByToken(token);
 
-  if (!existingToken) return AppResponse.TOKEN_NOT_EXIST;
+  if (!existingToken) return { error: "Invalid token!" };
 
   const hasExpired = new Date(existingToken.expires) < new Date();
 
-  if (hasExpired) return AppResponse.EXPIRED_TOKEN;
+  if (hasExpired) return { error: "Token has expired!" };
 
   const existingUser = await getUserByEmail(existingToken.email);
 
-  if (!existingUser) return AppResponse.EMAIL_NOT_EXIST;
+  if (!existingUser) return { error: "Email does not exist!" };
 
   await db.user.update({
     where: { id: existingUser.id },
@@ -30,5 +29,5 @@ export const newVerification = async (token: string) => {
     where: { id: existingToken.id },
   });
 
-  return AppResponse.EMAIL_VERIFIED;
+  return { success: "Email verified!" };
 };

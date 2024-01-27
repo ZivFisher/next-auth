@@ -4,7 +4,6 @@ import { getUserByEmail } from "@/dbQueries/user";
 import { ResetPasswordSchema } from "@/schemas";
 import { sendPasswordResetEmail } from "@/lib/utils/functions/sendEmail";
 import { generatePasswordResetToken } from "@/lib/utils/functions/token";
-import { AppResponse } from "@/lib/utils/consts/serverResponses";
 import { z } from "zod";
 
 export const passwordReset = async (
@@ -12,13 +11,13 @@ export const passwordReset = async (
 ) => {
   const validatedFields = ResetPasswordSchema.safeParse(values);
 
-  if (!validatedFields?.success) return AppResponse.INVALID_EMAIL;
+  if (!validatedFields?.success) return { error: "Invalid email" };
 
   const { email } = validatedFields.data;
 
   const existingEmail = await getUserByEmail(email);
 
-  if (!existingEmail) return AppResponse.EMAIL_NOT_FOUND;
+  if (!existingEmail) return { error: "Email not found" };
 
   const passwordResetToken = await generatePasswordResetToken(email);
 
@@ -27,5 +26,5 @@ export const passwordReset = async (
     passwordResetToken.token
   );
 
-  return AppResponse.RESET_EMAIL_SENT;
+  return { success: "Reset email sent!" };
 };
